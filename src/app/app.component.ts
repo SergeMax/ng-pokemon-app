@@ -5,7 +5,7 @@ import {Pokemon} from './pokemon';
 
 @Component({
   selector: 'app-root',
-  template: `<h1> Hellryo, {{name}}</h1>`,
+  templateUrl: './app.component.html',
   styles: []
 })
 export class AppComponent implements OnInit {
