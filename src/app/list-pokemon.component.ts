@@ -27,3 +27,5 @@ export class ListPokemonComponent implements OnInit {
     this.router.navigate(link);
   }
 }
+
+// https://stackoverflow.com/questions/50284714/using-routerlink-and-click-in-same-button 

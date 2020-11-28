@@ -21,7 +21,9 @@ export class DetailPokemonComponent implements OnInit{
         let id = + this.route.snapshot.paramMap.get("id");
 
         for (let i = 0; i < this.pokemons.length; i++){
-            this.pokemon = this.pokemons[i];
+            if(this.pokemons[i].id == id){
+                this.pokemon = this.pokemons[i];
+            }
         }
      }
 
@@ -29,3 +31,5 @@ export class DetailPokemonComponent implements OnInit{
          this.router.navigate(['/pokemons']);
      }
 }
+
+// https://stackoverflow.com/questions/50284714/using-routerlink-and-click-in-same-button
