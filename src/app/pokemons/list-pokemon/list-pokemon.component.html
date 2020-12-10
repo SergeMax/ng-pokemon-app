@@ -2,7 +2,7 @@
 <div class="container">
     <div class="row">
         <div *ngFor="let pokemon of pokemons" class="col s6 m4">
-            <div class="card horizontal"  (click)="selectPokemon(pokemon)" [pkmnBorderCard]="'brown'" [pkmnHoverBackgroundColor]="'#eaeaea'">
+            <div class="card horizontal hoverable"  (click)="selectPokemon(pokemon)" [pkmnBorderCard]="'brown'" [pkmnHoverBackgroundColor]="'#eaeaea'">
                 <div class="card-image">
                     <img [src]="pokemon.picture">
                 </div>
@@ -19,4 +19,8 @@
             </div>
         </div>
     </div>
+</div>
+
+<div class="card-action center">
+    <a (click)="addOnePokemon()" class="waves-effect wave-light btn">Ajouter un Pokemon</a>              
 </div>

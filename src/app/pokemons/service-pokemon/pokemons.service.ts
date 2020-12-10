@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 //import { POKEMONS } from './mock-pokemons';
-import { Pokemon } from './pokemon';
+import { Pokemon } from '../pokemon';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
@@ -50,7 +50,7 @@ export class PokemonsService {
 
         return this.http.get<Pokemon>(url).pipe(
             tap(_ => this.log(`fetched pokemon id= ${id}`)),
-            catchError(this.handleError<Pokemon>(`getPokemon id = ${id}`))
+            catchError(this.handleError<Pokemon>(`getPokemon service id = ${id}`))
         );
         }
     
@@ -99,6 +99,31 @@ export class PokemonsService {
         catchError(this.handleError<any>('deletedPokemon'))
     )
     }
+
+    addPokemon(pokemon: Pokemon): Observable<Pokemon> {
+        const httpOption = {
+            headers: new HttpHeaders({'Content-Type': 'application/json'})
+        }
+        
+    return this.http.post<Pokemon>(this.pokemonsUrl, httpOption).pipe(
+        tap( (pokemon: Pokemon) => this.log(`added pokemon with id= ${pokemon.id}`)),
+        catchError(this.handleError<any>('addedPokemon'))
+    )
+    }
+
+  
+	/* GET pokemons search */
+	searchPokemons(term: string): Observable<Pokemon[]> {
+		if (!term.trim()) {
+			// si le terme de recherche n'existe pas, on renvoie un tableau vide.
+			return of([]);
+		}
+
+		return this.http.get<Pokemon[]>(`api/pokemons/?name=${term}`).pipe(
+			tap(_ => this.log(`found pokemons matching "${term}"`)),
+			catchError(this.handleError<Pokemon[]>('searchPokemons', []))
+		);
+	}
 
 
 }

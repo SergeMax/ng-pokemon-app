@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Pokemon } from './pokemon';
-import { PokemonsService } from './pokemons.service';
+import { PokemonsService } from './service-pokemon/pokemons.service';
 
 
 @Component({
@@ -36,6 +36,12 @@ export class DetailPokemonComponent implements OnInit {
     goEdit(pokemon: Pokemon): void {
         let link = ['/pokemon/edit', pokemon.id]
         this.router.navigate(link);
+    }
+
+    delete(pokemon: Pokemon): void {
+       this.pokemonsService.deletePokemon(pokemon).subscribe(
+           _ => this.goBack()
+       );
     }
 
 }

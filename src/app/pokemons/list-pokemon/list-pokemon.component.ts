@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { POKEMONS } from './mock-pokemons';
-import { Pokemon } from './pokemon';
+import { POKEMONS } from '../mock-pokemons';
+import { Pokemon } from '../pokemon';
 import { Router } from '@angular/router';
-import { PokemonsService } from './pokemons.service';
+import { PokemonsService } from '../service-pokemon/pokemons.service';
 
 
 @Component({
@@ -36,6 +36,11 @@ export class ListPokemonComponent implements OnInit {
     let link = ['/pokemon', pokemon.id];
     this.router.navigate(link);
   }
+
+  addOnePokemon(){
+    this.router.navigate(['pokemon/add']);
+  }
+
 }
 
 // https://stackoverflow.com/questions/50284714/using-routerlink-and-click-in-same-button 
