@@ -1,8 +1,10 @@
+import { isNgContainer } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
+import { Observable } from 'rxjs';
 import { Pokemon } from './pokemon';
-import { POKEMONS } from './mock-pokemons';
 import { PokemonsService } from './pokemons.service';
+
 
 @Component({
     selector: 'detail-pokemon',
@@ -24,12 +26,18 @@ export class DetailPokemonComponent implements OnInit {
 
     getPokemon() {
         let id = + this.route.snapshot.paramMap.get("id");
-        this.pokemon = this.pokemonsService.getPokemon(id);
+        this.pokemonsService.getPokemon(id).subscribe(pokemon => this.pokemon = pokemon);
     }
 
     goBack(): void {
         this.router.navigate(['/pokemons']);
     }
+
+    goEdit(pokemon: Pokemon): void {
+        let link = ['/pokemon/edit', pokemon.id]
+        this.router.navigate(link);
+    }
+
 }
 
 // https://stackoverflow.com/questions/50284714/using-routerlink-and-click-in-same-button
