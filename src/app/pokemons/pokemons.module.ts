@@ -12,6 +12,10 @@ import { EditPokemonComponent } from './edit-pokemon/edit-pokemon.component';
 import { PokemonFormComponent } from './form-pokemon/pokemon-form.component';
 import {AddPokemonComponent} from './add-pokemon/add-pokemon.component';
 import { PokemonSearchComponent } from './search-pokemon/search-pokemon.component';
+import { LoaderComponent } from '../loader.component';
+import { AuthGuard } from '../auth-guard.service';
+import { PokemonsService } from './service-pokemon/pokemons.service';
+import { AuthService } from '../auth.service';
 
 
 
@@ -29,9 +33,15 @@ import { PokemonSearchComponent } from './search-pokemon/search-pokemon.componen
         PokemonFormComponent,
         BorderCardDirective,
         PokemonTypeColorPipe,
-        PokemonSearchComponent
+        PokemonSearchComponent,
+        LoaderComponent
     ],
-    providers:[]
+    providers:[
+        PokemonsService,
+        AuthGuard,
+        AuthService
+
+    ]
 })
 
 export class PokemonsModule{}
