@@ -10,8 +10,8 @@ const appRoutes: Routes = [
  
 @NgModule({
     imports: [
-        RouterModule.forRoot(appRoutes),
-        RouterModule.forRoot(appRoutes, {enableTracing : true})
+        RouterModule.forRoot(appRoutes, { relativeLinkResolution: 'legacy' }),
+        RouterModule.forRoot(appRoutes, { enableTracing: true, relativeLinkResolution: 'legacy' })
     ],
     exports: [
         RouterModule
